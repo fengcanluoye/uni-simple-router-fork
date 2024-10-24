@@ -1,26 +1,20 @@
 <template>
-	<view>
-		<h1>迷路啦，找不到页面</h1>
-	</view>
+  <view>
+    <h1>迷路啦，找不到页面</h1>
+  </view>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				
-			}
-		},
-		onLoad(...options){
-			console.log(options)
-			console.log(this.$Route)
-		},
-		methods: {
-			
-		}
-	}
+export default {
+  data() {
+    return {}
+  },
+  onLoad(...options) {
+    console.log(options)
+    console.log(this.$route)
+  },
+  methods: {},
+}
 </script>
 
-<style>
-
-</style>
+<style></style>

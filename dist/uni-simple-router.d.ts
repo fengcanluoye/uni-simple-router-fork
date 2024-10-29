@@ -2,8 +2,8 @@
 // @ts-ignore
 declare module 'vue/types/vue' {
     interface Vue {
-        $router: Router;
-        $route: routeRule;
+        $Router: Router;
+        $Route: routeRule;
     }
 }
     

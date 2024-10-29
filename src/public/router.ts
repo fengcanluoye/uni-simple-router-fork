@@ -72,11 +72,11 @@ function createRouter(params: InstantiateConfig): Router {
       router.Vue = Vue
       rewriteMethod(this)
       initMixins(Vue, this)
-      Object.defineProperty(Vue.prototype, '$router', {
+      Object.defineProperty(Vue.prototype, '$Router', {
         get() {
           const actualData = router
 
-          Object.defineProperty(this, '$router', {
+          Object.defineProperty(this, '$Router', {
             value: actualData,
             writable: false,
             configurable: false,
@@ -86,11 +86,32 @@ function createRouter(params: InstantiateConfig): Router {
           return Object.seal(actualData)
         },
       })
-      Object.defineProperty(Vue.prototype, '$route', {
+      Object.defineProperty(Vue.prototype, '$Route', {
         get() {
           return createRoute(router)
         },
       })
+      if (router.options.platform !== 'h5') {
+        Object.defineProperty(Vue.prototype, '$router', {
+          get() {
+            const actualData = router
+
+            Object.defineProperty(this, '$router', {
+              value: actualData,
+              writable: false,
+              configurable: false,
+              enumerable: false,
+            })
+
+            return Object.seal(actualData)
+          },
+        })
+        Object.defineProperty(Vue.prototype, '$route', {
+          get() {
+            return createRoute(router)
+          },
+        })
+      }
       // 【Fixe】  https://github.com/SilurianYang/uni-simple-router/issues/254
       Object.defineProperty(Vue.prototype, '$AppReady', {
         get() {
